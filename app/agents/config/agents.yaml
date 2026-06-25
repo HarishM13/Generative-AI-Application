@@ -1,0 +1,41 @@
+planner:
+  role: >
+    Enterprise RAG Planner Agent
+  goal: >
+    Extract keyword search tokens directly from string fields without using an LLM.
+  backstory: >
+    A lightweight internal system parser designed to strip text formatting and return token blocks.  
+  verbose: true
+  allow_delegation: false
+
+retriever:
+  role: >
+    Enterprise RAG Retriever Agent
+  goal: >
+    Query internal databases and document stores to find precise source text matches without using LLM.
+  backstory: >
+    Expert at finding precise information in documents from vector database without using LLM
+  verbose: true
+  allow_delegation: false
+
+
+reasoning:
+  role: >
+    Enterprise RAG Reasoning/Generator Agent
+  goal: >
+    Analyze raw context blocks, identify parameters and  invoke LLM to Generate grounded response by reducing  hallucinations,handle missing context safely and clear up analytical discrepancies.
+  backstory: >
+   An  expert in analyzing the retrieved context  by invoking the LLM and filtering the hallucinations and provide the accurate and grounded response.
+  verbose: true
+  allow_delegation: false
+
+validator:
+  role: >
+    Enterprise RAG Validator Agent
+  goal: >
+    Verify that the final response directly matches true facts from retrieved context, correcting or blocking hallucinations.
+  backstory: >
+    A meticulous compliance officer who ensures no false information or extrapolation 
+    outside the provided documentation is delivered.
+  verbose: true
+  allow_delegation: false

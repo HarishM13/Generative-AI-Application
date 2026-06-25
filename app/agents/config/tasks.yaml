@@ -1,0 +1,36 @@
+planner_task:
+  description: >
+   Take the raw user input: {user_query}. Clean up any special characters, 
+    redundant spaces, and format it into a pristine search string without invoking LLM.
+  expected_output: >
+    A User query : {user_query} and single sanitized search query string: {extracted_search_terms}.
+
+
+retriever_task:
+  description: >
+   Review the localized keyword extraction blueprint. Use those keys to evaluate this database chunk text:
+    {retrieved_context}
+    
+    CRITICAL SECURITY CHECK: If the {retrieved_context} string is NO_DATA_FOUND, 
+     you must stop immediately and output : "NO_DATA_FOUND".
+    
+    Otherwise, compile and hand off the raw text fragments to the next agent without invoking LLM.
+  expected_output: >
+    The exact string "NO_DATA_FOUND" or a compilation of raw text fragments pulled from the database source blocks.
+
+
+reasoning_task:
+  description: >
+    Analyze the text segments passed forward by the retriever task and invoke LLM. 
+    Cross-reference the statements against the original query '{user_query}' and organize the underlying insights.
+  expected_output: >
+     Use the retrieved context  and do not hallucinate. If context is "NO_DATA_FOUND", say: I could not find enough information in the retrieved documents. 
+     Otherwise Well Structured, Accurate response with clear and readable and also remove the repetitive text. 
+
+validator_task:
+  description: >
+    Cross-reference the draft answer against this baseline source documentation and User's query: {user_query}.
+    Identify any elements not directly stated, remove them, and format the output cleanly by invoking LLM.
+  expected_output: >
+   If context is "NO_DATA_FOUND", say: I could not find enough information in the retrieved documents.
+   Otherwise the final finalized response, certified safe from hallucinations.

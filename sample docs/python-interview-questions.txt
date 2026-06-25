@@ -1,0 +1,15 @@
+What is Python? What are the benefits of using Python
+What is a dynamically typed language?
+What is an Interpreted language?
+What is Scope in Python?
+What are lists and tuples? What is the key difference between the two?
+What are the common built-in data types in Python?
+What are modules and packages in Python?
+What are global, protected and private attributes in Python?
+What is the use of self in Python?
+What is __init__?
+What is the difference between Python Arrays and lists?
+How is memory managed in Python? 
+What is Scope Resolution in Python?
+What are decorators in Python?
+What are Dict and List comprehensions?
